@@ -1,7 +1,7 @@
 package com.grocerystore.backend.repository;
 
 import com.grocerystore.backend.domain.ProductEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
-public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
+public interface ProductRepository extends ReactiveCrudRepository<ProductEntity, Long> {
 }
