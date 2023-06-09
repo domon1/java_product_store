@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -24,4 +25,19 @@ public class ProductGroupEntity {
     // links
     @OneToMany(mappedBy = "group", cascade = {CascadeType.PERSIST})
     private Set<ProductCategoryEntity> categories = new HashSet<>();
+
+    // equals and hashCode
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductGroupEntity that = (ProductGroupEntity) o;
+        return id.equals(that.id) && name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }

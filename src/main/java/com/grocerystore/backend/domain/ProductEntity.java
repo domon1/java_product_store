@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @Setter
@@ -33,4 +35,21 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "rating_id")
     private ProductRatingEntity rating;
+
+    // equals and hashCode
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductEntity that = (ProductEntity) o;
+        return id.equals(that.id) && name.equals(that.name)
+                && price.equals(that.price) && category.equals(that.category)
+                && description.equals(that.description) && compound.equals(that.compound);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, category, description, compound);
+    }
 }
